@@ -85,6 +85,7 @@ import android.widget.Toast;
 @SuppressLint("NewApi")
 public class CreateRecordActivity extends FragmentActivity implements
 		ActionBar.TabListener {
+	
 
 	/**
 	 * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -99,6 +100,8 @@ public class CreateRecordActivity extends FragmentActivity implements
 	/**
 	 * The {@link ViewPager} that will host the section contents.
 	 */
+	
+	private final String DBURL = getResources().getString(R.string.database_url);
 	ViewPager mViewPager;
 	Bundle recordBundle;
 
@@ -109,9 +112,6 @@ public class CreateRecordActivity extends FragmentActivity implements
 	File holdingFolder;
 	Context context;
 	ActionBar actionBar;
-
-	// InfoDatabaseHelper dbHelper = new
-	// InfoDatabaseHelper(getApplicationContext());
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -234,7 +234,7 @@ public class CreateRecordActivity extends FragmentActivity implements
 			e.printStackTrace();
 		}
 
-		PostRecord pr = (PostRecord) new PostRecord().execute("");
+		PostRecord pr = (PostRecord) new PostRecord().execute(DBURL,jsonString);
 	}
 
 	public static String convertStreamToString(InputStream is) throws Exception {
@@ -262,7 +262,7 @@ public class CreateRecordActivity extends FragmentActivity implements
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				PostRecord pr = (PostRecord) new PostRecord().execute(inFile
+				PostRecord pr = (PostRecord) new PostRecord().execute(DBURL ,inFile
 						.getAbsolutePath());
 
 			}
@@ -307,54 +307,7 @@ public class CreateRecordActivity extends FragmentActivity implements
 		return dataPath;
 	}
 
-	private class PostRecord extends AsyncTask<String, Void, String> {
-
-		@Override
-		protected String doInBackground(String... params) {
-			HttpClient postClient = new DefaultHttpClient();
-			HttpPost post = new HttpPost("http://herpecho.appspot.com/echo");
-
-			try {
-				StringEntity se = new StringEntity(jsonString);
-				post.setEntity(se);
-				post.setHeader("Accept", "application/json");
-				post.setHeader("Content-type", "application/json");
-				// ResponseHandler responseHandler = new BasicResponseHandler();
-				HttpResponse response = postClient.execute(post);
-				StatusLine searchStatus = response.getStatusLine();
-				if (searchStatus.getStatusCode() == 200) { // OK
-					HttpEntity entity = response.getEntity();
-					InputStream content = entity.getContent();
-					InputStreamReader input = new InputStreamReader(content);
-					BufferedReader reader = new BufferedReader(input);
-					StringBuilder result = new StringBuilder();
-					String linein;
-					while ((linein = reader.readLine()) != null) {
-						result.append(linein);
-					}
-
-					// this is deleting the file and assumes this already exists
-					// the file is created outside the scope of the postrecord
-					File file = new File(params[0]);
-					Log.d("Response", result.toString());
-					Log.d("Deleting file", params[0]);
-					file.delete();
-
-				}
-			} catch (ClientProtocolException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (UnknownHostException e) {
-				// e.printStackTrace();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			return null;
-		}
-
-	}
-
+	
 	@Override
 	public void onTabSelected(ActionBar.Tab tab,
 			FragmentTransaction fragmentTransaction) {

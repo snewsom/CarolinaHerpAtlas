@@ -31,6 +31,7 @@
     <string name="genus_string">Genus</string>
     <string name="species_string">Species</string>
     <string name="get_loc_string">Get Current Location</string>
+    <string name="database_url">http://herpecho.appspot.com/echo</string>
     <string-array name="nc_counties">
         <item>Alamance</item>
         <item>Alexander</item>

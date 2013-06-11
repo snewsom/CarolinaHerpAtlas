@@ -100,6 +100,7 @@ public final class R {
         public static final int county_section=0x7f070007;
         public static final int county_string=0x7f07000b;
         public static final int create_string=0x7f070018;
+        public static final int database_url=0x7f07001e;
         public static final int east_string=0x7f07000d;
         public static final int genus_string=0x7f07001b;
         public static final int get_loc_string=0x7f07001d;
