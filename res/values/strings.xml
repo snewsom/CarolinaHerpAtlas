@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Carolina Herp Atlas</string>
+    <string name="menu_settings">Settings</string>
+    <string name="photo_section">Photo</string>
+    <string name="comments_section">Comments</string>
+    <string name="location_section">Location</string>
+    <string name="time_section">Time</string>
+    <string name="group_section">Classification</string>
+    <string name="county_section">State-County</string>
+    <string name="state_string">State:</string>
+    <string name="nc_string">North Carolina</string>
+    <string name="sc_string">South Carolina</string>
+    <string name="county_string">County:</string>
+    <string name="common_name_string">Common Name:</string>
+    <string name="east_string">UTM East:</string>
+    <string name="north_string">UTM North:</string>
+    <string name="zone_string">UTM Zone:</string>
+    <string name="loc_des_string">Location Description:</string>
+    <string name="comments_string">Comments:</string>
+    <string name="photo_string">Upload A Photo</string>
+    <string name="county_hint">Enter launch codes</string>
+    <string name="pick_date_string">Set Date of Sighting</string>
+    <string name="pick_time_string">Set Time of Sighting</string>
+    <string name="menu_submit_string">Submit Record</string>
+    <string name="post_list_string">Records to Submit</string>
+    <string name="create_string">Create a New Record</string>
+    <string name="submit_string">Submit All Records</string>
+    <string name="group_string">Group</string>
+    <string name="genus_string">Genus</string>
+    <string name="species_string">Species</string>
+    <string name="get_loc_string">Get Current Location</string>
+    <string-array name="nc_counties">
+        <item>Alamance</item>
+        <item>Alexander</item>
+        <item>Alleghany</item>
+        <item>Anson</item>
+        <item>Ashe</item>
+        <item>Avery</item>
+        <item>Beaufort</item>
+        <item>Bertie</item>
+        <item>Bladen</item>
+        <item>Brunswick</item>
+        <item>Buncombe</item>
+        <item>Burke</item>
+        <item>Cabarrus</item>
+        <item>Caldwell</item>
+        <item>Camden</item>
+        <item>Carteret</item>
+        <item>Caswell</item>
+        <item>Carawba</item>
+        <item>Chatham</item>
+        <item>Cherokee</item>
+        <item>Chowan</item>
+        <item>Clay</item>
+        <item>Cleveland</item>
+        <item>Columbus</item>
+        <item>Craven</item>
+        <item>Cumberland</item>
+        <item>Currituck</item>
+        <item>Dare</item>
+        <item>Davidson</item>
+        <item>Davie</item>
+        <item>Duplin</item>
+        <item>Durham</item>
+        <item>Edgecombe</item>
+        <item>Forsyth</item>
+        <item>Franklin</item>
+        <item>Gaston</item>
+        <item>Gates</item>
+        <item>Graham</item>
+        <item>Granville</item>
+        <item>Greene</item>
+        <item>Guilford</item>
+        <item>Halifax</item>
+        <item>Farnett</item>
+        <item>Haywood</item>
+        <item>Henderson</item>
+        <item>Hertford</item>
+        <item>Hoke</item>
+        <item>Hyde</item>
+        <item>Iredell</item>
+        <item>Jackson</item>
+        <item>Johnson</item>
+        <item>Jones</item>
+        <item>Lee</item>
+        <item>Lenoir</item>
+        <item>Lincoln</item>
+        <item>Macon</item>
+        <item>Madison</item>
+        <item>Martin</item>
+        <item>McDowell</item>
+        <item>Meckleburg</item>
+        <item>Mitchell</item>
+        <item>Montgomery</item>
+        <item>Moore</item>
+        <item>Nash</item>
+        <item>New Hanover</item>
+        <item>Northampton</item>
+        <item>Onslow</item>
+        <item>Orange</item>
+        <item>Pamlico</item>
+        <item>Pasquotank</item>
+        <item>Pender</item>
+        <item>Perquimans</item>
+        <item>Person</item>
+        <item>Pitt</item>
+        <item>Polk</item>
+        <item>Ranolph</item>
+        <item>Richmond</item>
+        <item>Robeson</item>
+        <item>Rockingham</item>
+        <item>Rowan</item>
+        <item>Rutherford</item>
+        <item>Sampson</item>
+        <item>Scotland</item>
+        <item>Stanly</item>
+        <item>Stokes</item>
+        <item>Surry</item>
+        <item>Swain</item>
+        <item>Transylvania</item>
+        <item>Tyrrell</item>
+        <item>Union</item>
+        <item>Vance</item>
+        <item>Wake</item>
+        <item>Warren</item>
+        <item>Washington</item>
+        <item>Watauga</item>
+        <item>Wayne</item>
+        <item>Wilkes</item>
+        <item>Wilson</item>
+        <item>Yadkin</item>
+        <item>Yancey</item>
+    </string-array>
+    <string-array name="sc_counties">
+        <item>Abbeville</item>
+        <item>Aiken</item>
+        <item>Allendale</item>
+        <item>Anderson</item>
+        <item>Bamberg</item>
+        <item>Barnwell</item>
+        <item>Beaufort</item>
+        <item>Berkeley</item>
+        <item>Calhoun</item>
+        <item>Charleston</item>
+        <item>Cherokee</item>
+        <item>Chester</item>
+        <item>Chesterfield</item>
+        <item>Clarendon</item>
+        <item>Colleton</item>
+        <item>Darlington</item>
+        <item>Dillon</item>
+        <item>Dorchester </item>
+        <item>Edgefield</item>
+        <item>Fairfield</item>
+        <item>Florence</item>
+        <item>Georgetown</item>
+        <item>Greenville</item>
+        <item>Greenwood</item>
+        <item>Hampton</item>
+        <item>Horry</item>
+        <item>Jasper</item>
+        <item>Kershaw</item>
+        <item>Lancaster</item>
+        <item>Laurens</item>
+        <item>Lee</item>
+        <item>Lexington</item>
+        <item>Marion</item>
+        <item>Marlboro</item>
+        <item>McCormick</item>
+        <item>Newberry</item>
+        <item>Oconee</item>
+        <item>Orangeburg</item>
+        <item>Pickens</item>
+        <item>Richland</item>
+        <item>Saluda</item>
+        <item>Spartanburg</item>
+        <item>Sumter</item>
+        <item>Union</item>
+        <item>Williamsburg</item>
+        <item>York</item>
+    </string-array>
+
+</resources>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingBottom="15dip"
+    android:paddingLeft="15dip"
+    android:paddingRight="15dip"
+    android:paddingTop="40dip" >
+
+    <TableLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+
+        <TableRow android:id="@+id/tableRowRadio" >
+
+            <TextView
+                android:id="@+id/state"
+                android:layout_weight="1"
+                android:text="@string/state_string"
+                android:textSize="@dimen/med_text"
+                tools:ignore="HardcodedText" />
+
+            <RadioGroup
+                android:id="@+id/radioGroup"
+                android:layout_weight="1"
+                android:orientation="horizontal" >
+
+                <RadioButton
+                    android:id="@+id/radioNorth"
+                    android:layout_weight="1"
+                    android:checked="true"
+                    android:text="@string/nc_string"
+                    tools:ignore="HardcodedText" />
+
+                <RadioButton
+                    android:id="@+id/radioSouth"
+                    android:layout_weight="1"
+                    android:text="@string/sc_string"
+                    tools:ignore="HardcodedText" />
+            </RadioGroup>
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRowAutoText"
+            android:layout_weight="1"
+            android:paddingTop="20dp" >
+
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_weight="1"
+                android:text="@string/county_string"
+                android:textSize="@dimen/med_text"
+                android:ems="5"
+                tools:ignore="HardcodedText" />
+
+            <AutoCompleteTextView
+                android:id="@+id/autocomplete_county"
+                android:layout_weight="1"
+                android:width="40dp"
+                android:hint="@string/county_hint" />
+
+        </TableRow>
+    </TableLayout>
+
+</LinearLayout>

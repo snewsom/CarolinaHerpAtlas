@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingBottom="15dip"
+    android:paddingLeft="15dip"
+    android:paddingRight="15dip"
+    android:paddingTop="40dip" >
+
+    <TableRow android:id="@+id/tableRow1" >
+
+        <TextView
+            android:id="@+id/eastView"
+            android:layout_weight=".5"
+            android:paddingRight="10dp"
+            android:text="@string/east_string"
+            android:textSize="@dimen/small_text" />
+
+        <EditText
+            android:id="@+id/eastEdit"
+            android:layout_weight=".5"
+            android:ems="10"
+            android:inputType="number" />
+    </TableRow>
+
+    <TableRow android:id="@+id/tableRow2" >
+
+        <TextView
+            android:id="@+id/northView"
+            android:layout_weight=".5"
+            android:text="@string/north_string"
+            android:textSize="@dimen/small_text" />
+
+        <EditText
+            android:id="@+id/northEdit"
+            android:layout_weight=".5"
+            android:ems="10"
+            android:inputType="number"
+            android:width="20dp" />
+    </TableRow>
+
+    <TableRow android:id="@+id/tableRow3" >
+
+        <TextView
+            android:id="@+id/zoneView"
+            android:layout_weight=".5"
+            android:paddingBottom="20dp"
+            android:text="@string/zone_string"
+            android:textSize="@dimen/small_text" />
+
+        <EditText
+            android:id="@+id/zoneEdit"
+            android:layout_weight=".5"
+            android:ems="10"
+            android:inputType="number" />
+    </TableRow>
+
+    <Button
+        android:id="@+id/locationButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Get my location" />
+
+    <TextView
+        android:id="@+id/locationDescriptionView"
+        android:layout_weight=".5"
+        android:paddingTop="40dp"
+        android:text="@string/loc_des_string"
+        android:textSize="@dimen/small_text" />
+
+    <EditText
+        android:id="@+id/locationEdit"
+        android:layout_height="wrap_content"
+        android:layout_weight=".5"
+        android:ems="10"
+        android:gravity="top|left"
+        android:inputType="textMultiLine"
+        android:lines="4" />
+
+</TableLayout>
