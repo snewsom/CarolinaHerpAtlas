@@ -85,7 +85,6 @@ import android.widget.Toast;
 @SuppressLint("NewApi")
 public class CreateRecordActivity extends FragmentActivity implements
 		ActionBar.TabListener {
-	
 
 	/**
 	 * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -100,8 +99,8 @@ public class CreateRecordActivity extends FragmentActivity implements
 	/**
 	 * The {@link ViewPager} that will host the section contents.
 	 */
-	
-	private final String DBURL = getResources().getString(R.string.database_url);
+
+	String DBURL;
 	ViewPager mViewPager;
 	Bundle recordBundle;
 
@@ -163,12 +162,17 @@ public class CreateRecordActivity extends FragmentActivity implements
 					.setTabListener(this));
 
 		}
+		// record bundle temparerly holds all of the values
+		// for the record as a hashmap
 		recordBundle = new Bundle();
+		// provides formating for jsonstring
 		json = new JSONObject();
 		holdingFolder = new File(Environment.getExternalStorageDirectory()
 				.getAbsolutePath() + "/CarolinaHerpAtlas");
 		holdingFolder.mkdirs();
 		context = this.getBaseContext();
+		// url to point the post information
+		DBURL = getResources().getString(R.string.database_url);
 
 	}
 
@@ -207,13 +211,11 @@ public class CreateRecordActivity extends FragmentActivity implements
 	private void submitRecord() {
 
 		json = new JSONObject();
-		StringBuilder record = new StringBuilder();
 		Set<String> keys = recordBundle.keySet();
 		for (String key : keys) {
 			try {
 				json.put(key, recordBundle.getString(key));
 			} catch (JSONException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 
@@ -234,7 +236,7 @@ public class CreateRecordActivity extends FragmentActivity implements
 			e.printStackTrace();
 		}
 
-		PostRecord pr = (PostRecord) new PostRecord().execute(DBURL,jsonString);
+		new PostRecord().execute(DBURL, jsonString, file.getAbsolutePath());
 	}
 
 	public static String convertStreamToString(InputStream is) throws Exception {
@@ -256,14 +258,12 @@ public class CreateRecordActivity extends FragmentActivity implements
 					jsonString = convertStreamToString(fin);
 					fin.close();
 				} catch (FileNotFoundException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				} catch (Exception e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				PostRecord pr = (PostRecord) new PostRecord().execute(DBURL ,inFile
-						.getAbsolutePath());
+				new PostRecord().execute(DBURL, jsonString,
+						inFile.getAbsolutePath());
 
 			}
 		}
@@ -307,7 +307,6 @@ public class CreateRecordActivity extends FragmentActivity implements
 		return dataPath;
 	}
 
-	
 	@Override
 	public void onTabSelected(ActionBar.Tab tab,
 			FragmentTransaction fragmentTransaction) {
@@ -510,12 +509,6 @@ public class CreateRecordActivity extends FragmentActivity implements
 			return null;
 		}
 
-		// @Override
-		// public void onDestroyView() {
-		// super.onDestroyView();
-		// Log.d("Destroyview", "Destroyview");
-		// };
-
 		String[] counties;
 		ArrayAdapter<String> adapter;
 		AutoCompleteTextView autoText;
@@ -540,10 +533,6 @@ public class CreateRecordActivity extends FragmentActivity implements
 						@Override
 						public void onCheckedChanged(RadioGroup group,
 								int checkedId) {
-
-							RadioButton checkedRadioButton = (RadioButton) stateRadioGroup
-									.findViewById(stateRadioGroup
-											.getCheckedRadioButtonId());
 
 							if (stateRadioGroup.getCheckedRadioButtonId() == R.id.radioNorth) {
 								counties = getResources().getStringArray(
@@ -810,12 +799,6 @@ public class CreateRecordActivity extends FragmentActivity implements
 							eastEditText.setText(locationArray[2]);
 							northEditText.setText(locationArray[3]);
 
-							/*
-							 * eastEditText.setText("" +
-							 * location.getLongitude());
-							 * northEditText.setText("" +
-							 * location.getLatitude());
-							 */
 							locationButton.setText("Get my location");
 							locManager.removeUpdates(this);
 							// } else {

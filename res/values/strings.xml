@@ -20,7 +20,7 @@
     <string name="loc_des_string">Location Description:</string>
     <string name="comments_string">Comments:</string>
     <string name="photo_string">Upload A Photo</string>
-    <string name="county_hint">Enter launch codes</string>
+    <string name="county_hint">Enter county</string>
     <string name="pick_date_string">Set Date of Sighting</string>
     <string name="pick_time_string">Set Time of Sighting</string>
     <string name="menu_submit_string">Submit Record</string>

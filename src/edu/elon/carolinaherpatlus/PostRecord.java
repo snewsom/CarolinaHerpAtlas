@@ -19,20 +19,21 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import android.os.AsyncTask;
 import android.util.Log;
 
-public class PostRecord extends AsyncTask<String, Void, String> {
+public class PostRecord extends AsyncTask<String, Boolean, String> {
 
 	@Override
 	protected String doInBackground(String... params) {
 		HttpClient postClient = new DefaultHttpClient();
 		//TODO URL change in params
 		//HttpPost post = new HttpPost("http://herpecho.appspot.com/echo");
+		//first parameter is the URL to post to
 		HttpPost post = new HttpPost(params[0]);
 		try {
+			//second parameter is the json string to post
 			StringEntity se = new StringEntity(params[1]);
 			post.setEntity(se);
 			post.setHeader("Accept", "application/json");
 			post.setHeader("Content-type", "application/json");
-			// ResponseHandler responseHandler = new BasicResponseHandler();
 			HttpResponse response = postClient.execute(post);
 			StatusLine searchStatus = response.getStatusLine();
 			if (searchStatus.getStatusCode() == 200) { // OK
@@ -48,12 +49,12 @@ public class PostRecord extends AsyncTask<String, Void, String> {
 
 				// this is deleting the file and assumes this already exists
 				// the file is created outside the scope of the postrecord
-				if(params.length > 2) {
+				// third parameter is the location of a .json if posting from file
 				File file = new File(params[2]);
 				Log.d("Response", result.toString());
 				Log.d("Deleting file", params[2]);
 				file.delete();
-				}
+				
 			}
 		} catch (ClientProtocolException e) {
 			// TODO Auto-generated catch block
