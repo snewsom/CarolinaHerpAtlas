@@ -92,21 +92,31 @@ public final class R {
         public static final int southcarolinacounty=0x7f040002;
     }
     public static final class string {
+        public static final int UTMEast_label=0x7f070024;
+        public static final int UTMNorth_label=0x7f070025;
+        public static final int UTMZone_label=0x7f070026;
         public static final int app_name=0x7f070000;
+        public static final int comments_label=0x7f070028;
         public static final int comments_section=0x7f070003;
         public static final int comments_string=0x7f070011;
         public static final int common_name_string=0x7f07000c;
         public static final int county_hint=0x7f070013;
+        public static final int county_label=0x7f070029;
         public static final int county_section=0x7f070007;
         public static final int county_string=0x7f07000b;
         public static final int create_string=0x7f070018;
         public static final int database_url=0x7f07001e;
         public static final int east_string=0x7f07000d;
+        public static final int file_path=0x7f07001f;
+        public static final int genus_label=0x7f070022;
         public static final int genus_string=0x7f07001b;
         public static final int get_loc_string=0x7f07001d;
+        public static final int group_label=0x7f070021;
         public static final int group_section=0x7f070006;
         public static final int group_string=0x7f07001a;
+        public static final int image_path=0x7f070020;
         public static final int loc_des_string=0x7f070010;
+        public static final int location_comment_label=0x7f070027;
         public static final int location_section=0x7f070004;
         public static final int menu_settings=0x7f070001;
         public static final int menu_submit_string=0x7f070016;
@@ -118,6 +128,7 @@ public final class R {
         public static final int pick_time_string=0x7f070015;
         public static final int post_list_string=0x7f070017;
         public static final int sc_string=0x7f07000a;
+        public static final int species_label=0x7f070023;
         public static final int species_string=0x7f07001c;
         public static final int state_string=0x7f070008;
         public static final int submit_string=0x7f070019;

@@ -85,7 +85,6 @@ import android.widget.Toast;
 @SuppressLint("NewApi")
 public class CreateRecordActivity extends FragmentActivity implements
 		ActionBar.TabListener {
-	
 
 	/**
 	 * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -100,8 +99,8 @@ public class CreateRecordActivity extends FragmentActivity implements
 	/**
 	 * The {@link ViewPager} that will host the section contents.
 	 */
-	
-	private final String DBURL = getResources().getString(R.string.database_url);
+
+	String DBURL;
 	ViewPager mViewPager;
 	Bundle recordBundle;
 
@@ -163,17 +162,26 @@ public class CreateRecordActivity extends FragmentActivity implements
 					.setTabListener(this));
 
 		}
+		// record bundle temporarily holds all of the values
+		// for the record as a hashmap
 		recordBundle = new Bundle();
+		// provides formating for jsonstring
 		json = new JSONObject();
 		holdingFolder = new File(Environment.getExternalStorageDirectory()
-				.getAbsolutePath() + "/CarolinaHerpAtlas");
+				.getAbsolutePath() + R.string.file_path);
 		holdingFolder.mkdirs();
 		context = this.getBaseContext();
+		// url to point the post information
+		DBURL = getResources().getString(R.string.database_url);
 
 	}
 
 	@Override
 	protected void onResume() {
+		//this resets the view to the first fragment in the list
+		//this prevents null pointers of the activity trying to call fragments
+		//that have not been loaded yet.
+		//TODO fix that ^
 		actionBar.setSelectedNavigationItem(0);
 		submitHeldFiles();
 		super.onResume();
@@ -202,18 +210,19 @@ public class CreateRecordActivity extends FragmentActivity implements
 		}
 	}
 
-	// get all the information from fragments by using
-	// intent.putExtra("", );
+
+	/**
+	 * Creates record to post.
+	 */
 	private void submitRecord() {
 
 		json = new JSONObject();
-		StringBuilder record = new StringBuilder();
+		//collect all of the keys from the map to format to JSON
 		Set<String> keys = recordBundle.keySet();
 		for (String key : keys) {
 			try {
 				json.put(key, recordBundle.getString(key));
 			} catch (JSONException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 
@@ -234,7 +243,7 @@ public class CreateRecordActivity extends FragmentActivity implements
 			e.printStackTrace();
 		}
 
-		PostRecord pr = (PostRecord) new PostRecord().execute(DBURL,jsonString);
+		new PostRecord().execute(DBURL, jsonString, file.getAbsolutePath());
 	}
 
 	public static String convertStreamToString(InputStream is) throws Exception {
@@ -247,6 +256,9 @@ public class CreateRecordActivity extends FragmentActivity implements
 		return sb.toString();
 	}
 
+	/**
+	 * Submits files held when attempted to submit without Internet connection
+	 */
 	private void submitHeldFiles() {
 		File[] files = holdingFolder.listFiles();
 		for (File inFile : files) {
@@ -256,14 +268,12 @@ public class CreateRecordActivity extends FragmentActivity implements
 					jsonString = convertStreamToString(fin);
 					fin.close();
 				} catch (FileNotFoundException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				} catch (Exception e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				PostRecord pr = (PostRecord) new PostRecord().execute(DBURL ,inFile
-						.getAbsolutePath());
+				new PostRecord().execute(DBURL, jsonString,
+						inFile.getAbsolutePath());
 
 			}
 		}
@@ -307,7 +317,6 @@ public class CreateRecordActivity extends FragmentActivity implements
 		return dataPath;
 	}
 
-	
 	@Override
 	public void onTabSelected(ActionBar.Tab tab,
 			FragmentTransaction fragmentTransaction) {
@@ -324,6 +333,7 @@ public class CreateRecordActivity extends FragmentActivity implements
 	FragmentTransaction fragmentTransaction) {
 		Log.d("Unselect", "Tab Unselected");
 		int tabpos = tab.getPosition();
+		// create object of last tab
 		DummySectionFragment frag = (DummySectionFragment) mViewPager
 				.getAdapter().instantiateItem(mViewPager, tabpos);
 		Log.d("Tabpos", "" + tabpos);
@@ -332,7 +342,7 @@ public class CreateRecordActivity extends FragmentActivity implements
 			ImageView imageView = (ImageView) frag.getView().findViewById(
 					R.id.imageView);
 			Bundle imageBundle = frag.getArguments();
-			recordBundle.putString("ImagePath", frag.getImagePath());
+			recordBundle.putString(getResources().getString(R.string.image_path), frag.getImagePath());
 			// String encodedImage = Base64.encodeToString(, flags);
 
 			break;
@@ -344,11 +354,11 @@ public class CreateRecordActivity extends FragmentActivity implements
 			Spinner speciesSpinner = (Spinner) frag.getView().findViewById(
 					R.id.spinnerSpecies);
 
-			recordBundle.putString("Group", groupSpinner.getSelectedItem()
+			recordBundle.putString(getResources().getString(R.string.group_label), groupSpinner.getSelectedItem()
 					.toString());
-			recordBundle.putString("Genus", genusSpinner.getSelectedItem()
+			recordBundle.putString(getResources().getString(R.string.genus_label), genusSpinner.getSelectedItem()
 					.toString());
-			recordBundle.putString("Species", speciesSpinner.getSelectedItem()
+			recordBundle.putString(getResources().getString(R.string.species_label), speciesSpinner.getSelectedItem()
 					.toString());
 			break;
 
@@ -377,24 +387,21 @@ public class CreateRecordActivity extends FragmentActivity implements
 			EditText locationEdit = (EditText) frag.getView().findViewById(
 					R.id.locationEdit);
 
-			recordBundle.putString("UTMEast", UTMEast.getText().toString());
-			recordBundle.putString("UTMNorth", UTMNorth.getText().toString());
-			recordBundle.putString("UTMZone", UTMZone.getText().toString());
-			recordBundle.putString("LocationComment", locationEdit.getText()
+			recordBundle.putString(getResources().getString(R.string.UTMEast_label), UTMEast.getText().toString());
+			recordBundle.putString(getResources().getString(R.string.UTMNorth_label), UTMNorth.getText().toString());
+			recordBundle.putString(getResources().getString(R.string.UTMZone_label), UTMZone.getText().toString());
+			recordBundle.putString(getResources().getString(R.string.location_comment_label), locationEdit.getText()
 					.toString());
 			break;
 		case 4:
 			EditText comments = (EditText) frag.getView().findViewById(
 					R.id.commentText);
-			recordBundle.putString("Comments", comments.getText().toString());
+			recordBundle.putString(getResources().getString(R.string.comments_label), comments.getText().toString());
 			break;
 		case 5:
 			AutoCompleteTextView countyText = (AutoCompleteTextView) frag
 					.getView().findViewById(R.id.autocomplete_county);
-			recordBundle.putString("County", countyText.getText().toString());
-			Toast.makeText(this, countyText.getText().toString(),
-					Toast.LENGTH_SHORT).show();
-
+			recordBundle.putString(getResources().getString(R.string.county_label), countyText.getText().toString());
 			break;
 		default:
 
@@ -510,12 +517,6 @@ public class CreateRecordActivity extends FragmentActivity implements
 			return null;
 		}
 
-		// @Override
-		// public void onDestroyView() {
-		// super.onDestroyView();
-		// Log.d("Destroyview", "Destroyview");
-		// };
-
 		String[] counties;
 		ArrayAdapter<String> adapter;
 		AutoCompleteTextView autoText;
@@ -540,10 +541,6 @@ public class CreateRecordActivity extends FragmentActivity implements
 						@Override
 						public void onCheckedChanged(RadioGroup group,
 								int checkedId) {
-
-							RadioButton checkedRadioButton = (RadioButton) stateRadioGroup
-									.findViewById(stateRadioGroup
-											.getCheckedRadioButtonId());
 
 							if (stateRadioGroup.getCheckedRadioButtonId() == R.id.radioNorth) {
 								counties = getResources().getStringArray(
@@ -810,12 +807,6 @@ public class CreateRecordActivity extends FragmentActivity implements
 							eastEditText.setText(locationArray[2]);
 							northEditText.setText(locationArray[3]);
 
-							/*
-							 * eastEditText.setText("" +
-							 * location.getLongitude());
-							 * northEditText.setText("" +
-							 * location.getLatitude());
-							 */
 							locationButton.setText("Get my location");
 							locManager.removeUpdates(this);
 							// } else {
